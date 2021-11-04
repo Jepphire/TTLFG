@@ -1,0 +1,55 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <form [formGroup]="groupEditForm" (ngSubmit)=onSubmitGroup(groupEditForm.value)>
+        <div class="form-group">
+          <label for="groupName">Group Name</label>
+          <input
+            type="text"
+            id="groupName"
+            formControlName="groupName"
+            class="form-control">
+            <span class="help-block"
+              *ngIf="!groupEditForm.get('groupName').valid
+              && groupEditForm.get('groupName').touched">
+              Your group needs a suitable name!</span>
+        </div>
+        <div class="form-group">
+          <label for="gameType">Gametype</label>
+          <select id="gameType" formControlName="gameType" class="form-control">
+            <option [ngValue]="null" disabled>Select a game type</option>
+            <option value="boardgame">Boardgame</option>
+            <option value="cardgame">Cardgame</option>
+            <option value="rpg">TTRPG</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="gameName">Game Name</label>
+          <input
+            type="text"
+            id="gameName"
+            formControlName="gameName"
+            class="form-control">
+            <span class="help-block"
+              *ngIf="!groupEditForm.get('gameName').valid
+              && groupEditForm.get('gameName').touched">
+              Tell us what game you're playing!</span>
+        </div>
+        <div class="form-group">
+          <label for="groupDesc">Describe your group!</label>
+          <input
+            type="text"
+            id="groupDesc"
+            formControlName="groupDesc"
+            class="form-control">
+              <span class="help-block"
+              *ngIf="!groupEditForm.get('groupDesc').valid
+              && groupEditForm.get('groupDesc').touched">
+              Tell us a little about your group!</span>
+        </div>
+        <button class="btn btn-default" type="submit" [disabled]="!groupEditForm.valid">Publish</button>
+        <button class="btn btn-default" type="button" (click)="onCancelGroup()">Cancel</button>
+      </form>
+    </div>
+  </div>
+</div>
