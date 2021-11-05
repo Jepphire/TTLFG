@@ -7,7 +7,7 @@
 <div class="row">
   <div class="col-xs-12">
     <!-- <p *ngIf="isFetching">Loading...</p> -->
-    <!-- <p *ngIf="groups.length < 1 && !isFetching">There aren't any groups to display :(</p> -->
+    <p *ngIf="groups.length < 1">There aren't any groups to display :(</p>
     <app-group-item
       *ngFor="let groupItem of groups"
       [group]="groupItem"></app-group-item>
