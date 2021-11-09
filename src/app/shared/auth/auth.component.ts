@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from './auth.service';
 
 @Component({
   selector: 'app-auth',
@@ -8,11 +10,33 @@ import { Router } from '@angular/router';
 })
 export class AuthComponent implements OnInit {
 
-  private router: Router;
+  authForm: FormGroup;
 
-  constructor() {}
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {
+    this.authForm = new FormGroup({
+      'email': new FormControl(null, Validators.required),
+      'password': new FormControl(null, Validators.required)
+    });
   }
 
+  onSubmitLogin(authData) {
+    this.authService.onLogin(
+      authData.email,
+      authData.password
+    ).subscribe(responseData => {
+      console.log(responseData)
+    });
+    this.authForm.reset();
+    this.onCancelAuth();
+  }
+
+  onCancelAuth() {
+    this.router.navigate(['../'], {relativeTo: this.route})
+  }
 }
