@@ -10,8 +10,8 @@
 .auth-box {
   position: fixed;
   top: 30vh;
-  left: 20vw;
-  width: 60vw;
+  left: 30vw;
+  width: 40vw;
   z-index: 100;
   background: white;
   border-radius: 3px;
