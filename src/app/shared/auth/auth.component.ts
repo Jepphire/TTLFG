@@ -11,11 +11,13 @@ import { AuthService } from './auth.service';
 export class AuthComponent implements OnInit {
 
   authForm: FormGroup;
+  error: string = null;
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private authService: AuthService
+    private authService: AuthService,
+    //private errorService: ErrorService
   ) {}
 
   ngOnInit(): void {
@@ -29,11 +31,17 @@ export class AuthComponent implements OnInit {
     this.authService.onLogin(
       authData.email,
       authData.password
-    ).subscribe(responseData => {
-      console.log(responseData)
+    ).subscribe(
+      responseData => {
+      console.log(responseData);
+      this.router.navigate(['']);
+    },
+    errorData => {
+      this.error = errorData;
+      console.log(errorData);
     });
-    this.authForm.reset();
-    this.onCancelAuth();
+    //this.authForm.reset();
+    //this.onCancelAuth();
   }
 
   onCancelAuth() {

@@ -6,7 +6,7 @@ import { GroupsComponent } from './groups/groups.component';
 import { GroupEditComponent } from './groups/group-edit/group-edit.component';
 import { UserProfileComponent } from './users/user-profile/user-profile.component';
 import { AuthComponent } from './shared/auth/auth.component';
-import { SignupComponent } from './shared/signup/signup.component';
+import { SignupComponent } from './signup/signup.component';
 
 
 const routes: Routes = [
