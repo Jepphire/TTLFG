@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
-    <div class="col-xs-12">
-      <form [formGroup]="groupEditForm" (ngSubmit)="onSubmitGroup(groupEditForm.value)">
+    <div class="col-12">
+      <form class="group-edit-form" [formGroup]="groupEditForm" (ngSubmit)="onSubmitGroup(groupEditForm.value)">
         <div class="form-group">
           <label for="groupName">Group Name</label>
           <input

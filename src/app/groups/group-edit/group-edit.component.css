@@ -1,3 +1,8 @@
 input.ng-invalid.ng-touched, select.ng-invalid.ng-touched {
   border: 1px solid red;
 }
+
+.group-edit-form {
+  margin: 0 auto;
+  width: 50%;
+}
