@@ -1,6 +1,9 @@
 <div class="signup-container">
   <div class="row">
     <div class="col-xs-12">
+      <div class="alert alert-danger" *ngIf="error">
+        <p>{{ error }}</p>
+      </div>
       <form [formGroup]="signupForm" (ngSubmit)="onSubmitSignup(signupForm.value)">
         <!-- <div class="form-group">
           <label for="displayName">Display Name</label>

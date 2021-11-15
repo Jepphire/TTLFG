@@ -4,10 +4,11 @@
   </div>
   <ul class="nav navbar-nav">
     <li routerLinkActive="active"><a routerLink="/groups">Groups</a></li>
-    <li routerLinkActive="active"><a routerLink="/users/profile">Profile</a></li>
+    <li *ngIf="isAuthenticated" routerLinkActive="active"><a routerLink="/users/profile">Profile</a></li>
   </ul>
-  <div>
-    <a routerLink="/login">login</a>
-    <a routerLink="/signup">sign up</a>
-  </div>
+  <ul class="nav navbar-nav navbar-right">
+    <li *ngIf="!isAuthenticated"><a routerLink="/login">login</a></li>
+    <li *ngIf="!isAuthenticated"><a routerLink="/signup">sign up</a></li>
+    <li *ngIf="isAuthenticated"><a>logout</a></li>
+  </ul>
 </nav>
