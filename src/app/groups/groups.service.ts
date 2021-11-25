@@ -1,8 +1,9 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { map } from "rxjs/operators";
+import { HttpClient, HttpParams } from "@angular/common/http";
+import { exhaustMap, map, take } from "rxjs/operators";
 
 import { Group } from "./group.model";
+import { AuthService } from "../shared/auth/auth.service";
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,8 @@ import { Group } from "./group.model";
 export class GroupsService {
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private authService: AuthService
     ) {}
 
   submitGroup(
@@ -39,17 +41,19 @@ export class GroupsService {
 
   fetchGroups() {
     return this.http
-      .get<{ [key: string]: Group}>('https://ttlfg-812ce-default-rtdb.firebaseio.com/groups.json')
+      .get<{ [key: string]: Group}>(
+        'https://ttlfg-812ce-default-rtdb.firebaseio.com/groups.json'
+      )
       .pipe(
         map(responseData => {
           const groupArray: Group[] = [];
           for (const key in responseData) {
             if (responseData.hasOwnProperty(key)) {
-              groupArray.push({ ...responseData[key], id: key });
+            groupArray.push({ ...responseData[key], id: key });
             }
           }
           return groupArray;
         })
-      );
+      )
   }
 }

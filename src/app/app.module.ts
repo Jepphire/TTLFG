@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -16,6 +16,7 @@ import { GroupEditComponent } from './groups/group-edit/group-edit.component';
 import { UserProfileComponent } from './users/user-profile/user-profile.component';
 import { AuthComponent } from './shared/auth/auth.component';
 import { SignupComponent } from './signup/signup.component';
+import { AuthInterceptService } from './shared/auth/auth-intercept.service';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,7 @@ import { SignupComponent } from './signup/signup.component';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptService, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
