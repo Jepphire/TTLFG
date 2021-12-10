@@ -2,6 +2,7 @@ import { HttpHandler, HttpInterceptor, HttpParams, HttpRequest } from "@angular/
 import { Injectable } from "@angular/core";
 import { take, exhaustMap } from "rxjs/operators";
 
+import { UserService } from "../user.service";
 import { AuthService } from "./auth.service";
 
 @Injectable()
@@ -9,11 +10,11 @@ import { AuthService } from "./auth.service";
 export class AuthInterceptService implements HttpInterceptor {
 
   constructor(
-    private authService: AuthService
+    private userService: UserService
   ) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
-    return this.authService.user.pipe(
+    return this.userService.activeUser.pipe(
       take(1),
       exhaustMap(user => {
         if (!user) {

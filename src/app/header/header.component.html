@@ -3,7 +3,8 @@
     <a routerLink="/home" class="navbar-brand">TTLFG</a>
     <ul class="navbar-nav">
       <li class="nav-item" routerLinkActive="active"><a routerLink="/groups" class="nav-link">Groups</a></li>
-      <li class="nav-item" *ngIf="this.isAuthenticated" routerLinkActive="active"><a routerLink="/users/profile" class="nav-link">Profile</a></li>
+      <li class="nav-item" *ngIf="this.isAuthenticated"><a (click)="onCallProfile()" class="nav-link">Profile</a></li>
+      <li><button class="btn-default" (click)="logUser()">console loaded user</button></li>
     </ul>
     <ul class="navbar-nav">
       <li class="nav-item" *ngIf="!this.isAuthenticated"><a routerLink="/login" class="nav-link">Login</a></li>

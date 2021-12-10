@@ -5,6 +5,7 @@ import { BehaviorSubject, throwError } from "rxjs";
 import { catchError, tap } from "rxjs/operators";
 
 import { User } from "../user.model";
+import { UserService } from "../user.service";
 
 interface AuthResponse {
   idToken: string;
@@ -19,13 +20,14 @@ interface AuthResponse {
 
 export class AuthService {
 
-  user = new BehaviorSubject<User>(null);
+  //user = new BehaviorSubject<User>(null);
   token: string = null;
   private tokenExpTimer: any;
 
   constructor(
     private http: HttpClient,
-    private router: Router) {}
+    private router: Router,
+    private userService: UserService) {}
 
   onSignup(email: string, password: string) {
     return this.http.post<AuthResponse>('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDR3diW43L6_b9PXPwXd5HHktgZu5d79xY', {
@@ -61,21 +63,21 @@ export class AuthService {
     if (!userData) {
       return;
     }
-    const loadedUser = new User(
+    const activeUser = new User(
       userData.email,
       userData.id,
       userData._token,
       new Date(userData._tokenExpiration)
     );
-    if (loadedUser.token) {
-      this.user.next(loadedUser);
+    if (activeUser.token) {
+      this.userService.activeUser.next(activeUser);
       const expirationDuration = new Date(userData._tokenExpiration).getTime() - new Date().getTime();
       this.autoLogout(expirationDuration);
     }
   }
 
   logout() {
-    this.user.next(null);
+    this.userService.activeUser.next(null);
     this.router.navigate(['/home']);
     localStorage.removeItem('userData');
     if (this.tokenExpTimer) {
@@ -97,8 +99,8 @@ export class AuthService {
       localId,
       idToken,
       expirationDate);
-    this.user.next(user);
-    this.autoLogout(expiresIn * 1000)
+    this.userService.activeUser.next(user);
+    this.autoLogout(expiresIn * 1000);
     localStorage.setItem('userData', JSON.stringify(user));
   }
 

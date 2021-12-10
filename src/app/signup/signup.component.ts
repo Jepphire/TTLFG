@@ -22,6 +22,7 @@ export class SignupComponent implements OnInit {
     this.signupForm = new FormGroup({
       'email': new FormControl(null, Validators.required),
       'password': new FormControl(null, Validators.required),
+      'displayName': new FormControl(null, Validators.required)
     });
   }
 
@@ -41,6 +42,7 @@ export class SignupComponent implements OnInit {
   }
 
   onCancelSignUp() {
-    this.router.navigate(['../'])
+    this.signupForm.reset();
+    this.router.navigate(['../']);
   }
 }
