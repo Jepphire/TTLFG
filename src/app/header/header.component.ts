@@ -1,6 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../shared/auth/auth.service';
+
+import { UserService } from '../shared/user.service';
 
 @Component({
   selector: 'app-header',
@@ -13,13 +16,23 @@ export class HeaderComponent implements OnInit, OnDestroy {
   userSub: Subscription;
 
   constructor(
-    private authService: AuthService
+    private authService: AuthService,
+    private userService: UserService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
-    this.userSub = this.authService.user.subscribe(user => {
+    this.userSub = this.userService.activeUser.subscribe(user => {
       this.isAuthenticated = !!user;
     })
+  }
+
+  onCallProfile() {
+    this.router.navigate(['/u', this.userService.activeUser.value.id])
+  }
+
+  logUser() {
+    console.log(this.userService.activeUser.value)
   }
 
   onLogout() {
