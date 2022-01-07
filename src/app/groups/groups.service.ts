@@ -11,6 +11,8 @@ import { AuthService } from "../shared/auth/auth.service";
 
 export class GroupsService {
 
+  loadedGroups: Group[] = [];
+
   constructor(
     private http: HttpClient,
     private authService: AuthService
@@ -52,8 +54,13 @@ export class GroupsService {
             groupArray.push({ ...responseData[key], id: key });
             }
           }
+          this.loadedGroups = groupArray;
           return groupArray;
         })
       )
+  }
+
+  selectGroup(id) {
+    return this.loadedGroups.find(x => x.id === id);
   }
 }

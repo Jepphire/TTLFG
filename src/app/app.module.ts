@@ -18,6 +18,8 @@ import { AuthComponent } from './shared/auth/auth.component';
 import { SignupComponent } from './signup/signup.component';
 import { AuthInterceptService } from './shared/auth/auth-intercept.service';
 import { UserEditComponent } from './user/user-edit/user-edit.component';
+import { GroupDetailComponent } from './groups/group-detail/group-detail.component';
+import { GroupStartComponent } from './groups/group-start/group-start.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { UserEditComponent } from './user/user-edit/user-edit.component';
     UserProfileComponent,
     AuthComponent,
     SignupComponent,
-    UserEditComponent
+    UserEditComponent,
+    GroupDetailComponent,
+    GroupStartComponent
   ],
   imports: [
     BrowserModule,

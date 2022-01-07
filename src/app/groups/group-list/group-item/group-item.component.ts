@@ -10,10 +10,12 @@ import { Group } from '../../group.model';
 export class GroupItemComponent implements OnInit {
 
   @Input() group: Group;
+  id: string;
 
   constructor() { }
 
   ngOnInit(): void {
+    this.id = this.group.id
   }
 
 }
