@@ -9,6 +9,8 @@ import { AuthComponent } from './shared/auth/auth.component';
 import { SignupComponent } from './signup/signup.component';
 import { UserComponent } from './user/user.component';
 import { UserEditComponent } from './user/user-edit/user-edit.component';
+import { GroupDetailComponent } from './groups/group-detail/group-detail.component';
+import { GroupStartComponent } from './groups/group-start/group-start.component';
 
 
 const routes: Routes = [
@@ -16,7 +18,10 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'login', component: AuthComponent },
   { path: 'signup', component: SignupComponent },
-  { path: 'groups', component: GroupsComponent },
+  { path: 'groups', component: GroupsComponent, children: [
+    { path: '', component: GroupStartComponent },
+    { path: ':id', component: GroupDetailComponent }
+  ] },
   { path: 'groups/new', component: GroupEditComponent },
   { path: 'u', component: UserComponent, children: [
     { path: ':id', component: UserProfileComponent},

@@ -36,9 +36,12 @@ export class GroupEditComponent implements OnInit {
       groupData.gameName,
       groupData.groupDesc
     );
+    this.groupEditForm.reset();
+    this.router.navigate(['../'], { relativeTo: this.route })
   }
 
   onCancelGroup() {
+    this.groupEditForm.reset();
     this.router.navigate(['../'], { relativeTo: this.route });
   }
 
