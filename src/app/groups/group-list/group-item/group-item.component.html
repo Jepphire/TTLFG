@@ -1,7 +1,10 @@
-<a routerLink="{{id}}" class="list-group-item clearfix">
-  <div class="pull-left">
-    <h3>{{ group.groupName }}</h3>
-    <p>{{ group.gameType }}</p>
-    <p>{{ group.gameName }}</p>
+<div routerLink="{{id}}" class="card text-center group-item-card">
+  <div class="card-header">
+    {{ group.gameType }}
+    <span class="badge bg-danger" (click)="onDeleteGroup(id)">X</span>
   </div>
-</a>
+  <div class="card-body">
+    <h5 class="card-title">{{ group.groupName }}</h5>
+    <h6 class="card-subtitle">{{ group.gameName }}</h6>
+  </div>
+</div>
