@@ -22,7 +22,7 @@ const routes: Routes = [
     { path: '', component: GroupStartComponent },
     { path: ':id', component: GroupDetailComponent }
   ] },
-  { path: 'groups/new', component: GroupEditComponent },
+  { path: 'new-group', component: GroupEditComponent },
   { path: 'u', component: UserComponent, children: [
     { path: ':id', component: UserProfileComponent},
     { path: ':id/edit', component: UserEditComponent}

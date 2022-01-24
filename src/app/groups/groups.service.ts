@@ -12,6 +12,7 @@ import { AuthService } from "../shared/auth/auth.service";
 export class GroupsService {
 
   loadedGroups: Group[] = [];
+  groupEdit = false;
 
   constructor(
     private http: HttpClient,
@@ -39,6 +40,18 @@ export class GroupsService {
       .subscribe(responseData => {
         console.log(responseData)
       });
+  }
+
+  updateGroup() {
+    // this.http.
+  }
+
+  deleteGroup(id: string) {
+    this.http.delete(
+      'https://ttlfg-812ce-default-rtdb.firebaseio.com/groups' + '/' + id + '.json'
+    ).subscribe((res) => {
+      console.log(res)
+    });
   }
 
   fetchGroups() {
