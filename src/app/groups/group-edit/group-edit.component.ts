@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { GroupsService } from '../groups.service';
 import { Group } from '../group.model';
+import { databaseService } from 'src/app/shared/database.service';
 
 @Component({
   selector: 'app-group-edit',
@@ -17,7 +18,8 @@ export class GroupEditComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private groupsService: GroupsService
+    private groupsService: GroupsService,
+    private databaseService: databaseService
   ) {}
 
   ngOnInit(): void {
@@ -30,7 +32,8 @@ export class GroupEditComponent implements OnInit {
   }
 
   onSubmitGroup(groupData: Group) {
-    this.groupsService.submitGroup(
+    // this.groupsService.submitGroup(
+    this.databaseService.createGroup(
       groupData.groupName,
       groupData.gameType,
       groupData.gameName,

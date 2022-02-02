@@ -31,10 +31,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.router.navigate(['/u', this.userService.activeUser.value.id])
   }
 
-  logUser() {
-    console.log(this.userService.activeUser.value)
-  }
-
   onLogout() {
     this.authService.logout();
   }

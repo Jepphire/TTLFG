@@ -16,10 +16,13 @@ import { GroupEditComponent } from './groups/group-edit/group-edit.component';
 import { UserProfileComponent } from './user/user-profile/user-profile.component';
 import { AuthComponent } from './shared/auth/auth.component';
 import { SignupComponent } from './signup/signup.component';
-import { AuthInterceptService } from './shared/auth/auth-intercept.service';
 import { UserEditComponent } from './user/user-edit/user-edit.component';
 import { GroupDetailComponent } from './groups/group-detail/group-detail.component';
 import { GroupStartComponent } from './groups/group-start/group-start.component';
+
+import { AuthInterceptService } from './shared/auth/auth-intercept.service';
+
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
